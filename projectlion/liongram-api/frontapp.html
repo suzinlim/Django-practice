@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front App</title>
+</head>
+<body>
+    <h1>프론트엔드 영역</h1>
+    <button onclick="getPost()">Post 불러오기!</button>
+    <ul id="ul">
+        <li>불러오기 전</li>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function getPost() {
+            axios({
+                url: "http://localhost:8000/posts/",
+                method: 'GET',
+            })
+            .then(function (res) {
+                ul = document.getElementById("ul")
+                li = document.querySelectorAll("li")
+
+                if (li.length > 0) {
+                    li.forEach(e => {
+                        e.remove();
+                    })
+                }
+
+                res.data.forEach(e => {
+                    let creaeLi = document.createElement("li");
+                    let item = document.createTextNode(JSON.stringify(e));
+                    creaeLi.appendChild(item)
+                    ul.appendChild(creaeLi)
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}글 입력{% endblock %}
+
+{% block content %}
+<h1>Post 입력 화면 - Form 사용</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+         <!-- template 언어에서 주석 : {# {{내용}} #}, 코드 자체가 노출이 안됨, 서버에서 처리해줌 -->
+        {{ form.as_p }}
+        {# {{ form.as_p }} #}
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+{% endblock %}
